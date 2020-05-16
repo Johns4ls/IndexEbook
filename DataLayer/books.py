@@ -8,8 +8,5 @@ def insert(self, conn):
     #I used string interpolation to add the data into the query
     query += "values ('%s', %s, %s, %s);" % (self.title, self.releaseDate, self.pages, self.authorID)
 
-    #Lets print the query to make sure it is correct
-    print(query)
-
     #Lets insert the data into the database.
     conn.execute(query)

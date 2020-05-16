@@ -33,8 +33,13 @@ def LoadData (conn, Ebook):
         #We are create the author object and setting it as author1
     author1 = Author()
 
-    #Lets set the name of the author and insert it into the database
-    author1.name = Ebook["Authors"]
+    #Our name sometimes comes back as a list. So try to get it out. Otherwise, just take the name.
+    try:
+        author1.name = Ebook["Authors"][0]
+    except:
+        author1.name = Ebook["Authors"]
+    
+    #Lets insert our author into the database
     author1.insert(conn)
 
     #Lets create a new book as book1, and set it as harry potter

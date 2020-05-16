@@ -2,7 +2,7 @@
 from Database import database
 import dataLoader
 from ISBNData import GoogleISBNData
-from EbookData import EbookQuery
+from EbookData import EbookQuery, MobiQuery
 
 #This is how we set up to run an object oriented python program.
 if __name__ == '__main__':
@@ -13,6 +13,8 @@ if __name__ == '__main__':
 #This loads our data into the database.
     dataLoader.LoadFakeData(conn)
 
-#Get data from ebook, and check metadata against google books database, and submit it to our database
+#Get data from epub, check metadata against google books database, and then submit it to our database
     dataLoader.LoadData(conn, GoogleISBNData.query(EbookQuery.readEpub())[0])
     
+#Get data from mobi, check metadata against google books database, and then submit it to our database
+    dataLoader.LoadData(conn, GoogleISBNData.query(MobiQuery.parseMobi())[0])
