@@ -7,7 +7,7 @@ from sqlite3 import Error
 import os 
 
 #This imports our tables.py inside the Database folder.
-import tables
+from . import tables
 
 """ This is our function to create a database connection and update the tables"""
 def create_connection():

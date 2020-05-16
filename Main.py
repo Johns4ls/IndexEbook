@@ -1,6 +1,7 @@
 #This is our module/folder Database
 from Database import database
 import dataLoader
+from ISBNData import ISBNTools
 
 #This is how we set up to run an object oriented python program.
 if __name__ == '__main__':
@@ -10,3 +11,5 @@ if __name__ == '__main__':
 
 #This loads our data into the database.
     dataLoader.LoadFakeData(conn)
+    for isbn in ISBNTools.isbn():
+        print (isbn)

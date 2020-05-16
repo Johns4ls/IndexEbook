@@ -12,57 +12,6 @@ class Book:
         self.releaseDate = None
         self.pages = None
         self.authorID = None
-    #Here are the setters and getters for our properties.
-    @property
-    def bookID(self):
-        return self.bookID
-    @bookID.setter
-    def bookID(self, value):
-        self.bookID = value
-    @bookID.deleter
-    def bookID(self):
-        del self.bookID
-
-    @property
-    def title(self):
-        return self.title
-    @title.setter
-    def title(self, value):
-        self.title = value
-    @title.deleter
-    def title(self):
-        del self.title
-
-    @property
-    def releaseDate(self):
-        return self.releaseDate
-    @releaseDate.setter
-    def releaseDate(self, value):
-        self.releaseDate = value
-    @releaseDate.deleter
-    def releaseDate(self):
-        del self.releaseDate
-
-    @property
-    def pages(self):
-        return self.pages
-    @pages.setter
-    def pages(self, value):
-        self.pages = value
-    @pages.deleter
-    def pages(self):
-        del self.pages
-            
-    @property
-    def authorID(self):
-        return self.authorID
-    @authorID.setter
-    def authorID(self, value):
-        self.authorID = value
-    @authorID.deleter
-    def authorID(self):
-        del self.authorID
-
 
     #Here is a quick function to see if one book is the same as another by looking at their bookID.
     def equals(self, other):
