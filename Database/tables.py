@@ -6,6 +6,7 @@ def update_tables(conn):
                             authorID integer PRIMARY KEY,
                             name text NOT NULL
                         );"""
+                        
     #Here is our SQL to create our table for books if it doesn't exist, notice the foreign key to the authors.
     sql_books_table = """ CREATE TABLE IF NOT EXISTS books (
                                     bookID integer PRIMARY KEY,
