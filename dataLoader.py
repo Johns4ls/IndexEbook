@@ -27,3 +27,24 @@ def LoadFakeData(conn):
 
     #Lets insert our book
     book1.insert(conn)
+
+def LoadData (conn, Ebook):
+
+        #We are create the author object and setting it as author1
+    author1 = Author()
+
+    #Lets set the name of the author and insert it into the database
+    author1.name = Ebook["Authors"]
+    author1.insert(conn)
+
+    #Lets create a new book as book1, and set it as harry potter
+    book1 = Book()
+    book1.title = Ebook['Title']
+    book1.releaseDate = Ebook['Year']
+    book1.pages = 0
+
+    #Here we are getting the last inserted ID of the author, so that we can link them up with a Foreign Key
+    book1.authorID = getLastID.getAuthorID(conn)
+
+    #Lets insert our book
+    book1.insert(conn)
