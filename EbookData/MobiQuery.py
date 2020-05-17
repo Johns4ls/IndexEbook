@@ -6,7 +6,7 @@ from mobi import Mobi
 import os
 
 #Here is our function to parse out the data from the mobi file
-def parseMobi():
+def readMobi():
 
     #Open up our book and parse it 
     book = Mobi(os.path.dirname(os.path.abspath(__file__)) + '/book.mobi')

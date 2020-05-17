@@ -30,7 +30,7 @@ def LoadFakeData(conn):
 
 def LoadData (conn, Ebook):
 
-        #We are create the author object and setting it as author1
+        #We are creating the author object and setting it as author1
     author1 = Author()
 
     #Our name sometimes comes back as a list. So try to get it out. Otherwise, just take the name.
@@ -42,7 +42,7 @@ def LoadData (conn, Ebook):
     #Lets insert our author into the database
     author1.insert(conn)
 
-    #Lets create a new book as book1, and set it as harry potter
+    #Lets create a new book as book1
     book1 = Book()
     book1.title = Ebook['Title']
     book1.releaseDate = Ebook['Year']
