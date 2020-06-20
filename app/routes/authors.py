@@ -2,7 +2,7 @@ from app import app
 from app.Objects.authors import Author
 from app.Database import database
 from flask import request, jsonify
-@app.route('/api/authors/all', methods=['GET'])
+@app.route('/api/authors/get/all', methods=['GET'])
 def getAllAuthors():
     #Get database connection
     conn = database.create_connection()
@@ -14,7 +14,7 @@ def getAllAuthors():
     return jsonify(results)
 
 
-@app.route('/api/author', methods=['GET'])
+@app.route('/api/author/get', methods=['GET'])
 def getAuthor():
     #Get database connection
     conn = database.create_connection()
@@ -54,3 +54,11 @@ def getAuthor():
 
     #Jsonify the results and send it back.
     return jsonify(results)
+
+@app.route('/api/author/update', methods=['GET'])
+def updateAuthor():
+    #TODO
+
+@app.route('/api/author/delete', methods=['GET'])
+def deleteAuthor():
+    #TODO

@@ -19,7 +19,7 @@ class Book:
     #Here is where we can add logic to make sure we have all the data we want and that it is in the right format.
     def insert(self, conn):
         #Check for data issues here
-        if(self.title == None):
+        if(self.title is None):
             return "A book must have a title", 500
         if(self.authorID == None):
             return "A book must have an author", 500
@@ -28,28 +28,28 @@ class Book:
 
     def update(self, conn):
         #Check for data issues here
-        if(self.bookID == None):
+        if(self.bookID is None):
             return "A book must have an ID", 500
         #Here we finally insert the data for our book.
         books.update(self, conn)
 
-    def delete(self, conn):
+    def deleteFromKey(conn, bookID):
         #Check for data issues here
-        if(self.bookID == None):
+        if(bookID is None):
             return "A book must have an ID", 500
         #Here we finally insert the data for our book.
-        books.delete(self, conn)
+        books.deleteFromKey(conn, bookID)
     
     def findFromKey(conn, bookID):
         #Check for data issues here
-        if(bookID == None):
+        if(bookID is None):
             return "A book must have an ID", 500
         #Lets try to find a book with the ID and return it
         return books.findFromKey(conn, bookID)
 
     def findFromKeys(conn, bookIDs):
         #Check for data issues here
-        if(bookIDs == None):
+        if(bookIDs is None):
             return "A book must have an ID", 500
         #Lets try to find a book with the ID and return it
         return books.findFromKeys(conn, bookIDs)

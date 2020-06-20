@@ -14,6 +14,14 @@ def insert(self, conn):
     #This has to be run to save the data.
     conn.commit()
 
+def update(self, conn):
+    #TODO
+
+def deleteFromKey(conn, bookID):
+
+    #Here we are setting up a string representation of the SQL.
+    conn.execute(f"Delete from books where bookID = {bookID}")
+
 def findFromKey(conn, bookID):
 
     #Here we are setting up a string representation of the SQL.

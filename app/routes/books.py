@@ -2,7 +2,7 @@ from app import app
 from app.Objects.books import Book
 from app.Database import database
 from flask import request, jsonify
-@app.route('/api/books/all', methods=['GET'])
+@app.route('/api/books/get/all', methods=['GET'])
 def getAllBooks():
     #Get database connection
     conn = database.create_connection()
@@ -14,7 +14,7 @@ def getAllBooks():
     return jsonify(results)
 
 
-@app.route('/api/book', methods=['GET'])
+@app.route('/api/book/get', methods=['GET'])
 def getBook():
     #Get database connection
     conn = database.create_connection()
@@ -49,3 +49,9 @@ def getBook():
     else:
         # If no bookID is provided, display an error in the browser.
         return "Error: No bookID field provided. Please specify a bookID.", 500
+
+@app.route('/api/book/update', methods=['GET'])
+def getBook():
+
+@app.route('/api/book/delete', methods=['GET'])
+def getBook():

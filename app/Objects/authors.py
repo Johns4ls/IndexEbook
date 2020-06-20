@@ -22,28 +22,28 @@ class Author:
 
     def update(self, conn):
         #Check for data issues here
-        if(self.authorID == None):
+        if(self.authorID is None):
             return "An author must have an ID", 500
         #Here we update the data for our author.
         authors.update(self, conn)
 
-    def delete(self, conn):
+    def deleteFromKey(conn, authorID):
         #Check for data issues here
-        if(self.authorID == None):
+        if(authorID is None):
             return "An author must have an ID", 500
         #Here we delete the data for our author.
-        authors.delete(self, conn)
+        authors.deleteFromKey(conn, authorID)
 
     def findFromKey(conn, authorID):
         #Check for data issues here
-        if (authorID == None):
+        if (authorID is None):
             return "authorID cannot be None", 500
         #Lets try to find a author with the ID and return it
         return authors.findFromKey(conn, authorID)
 
     def findFromKeys(conn, authorIDs):
         #Check for data issues here
-        if (authorID == None):
+        if (authorID is None):
             return "authorID cannot be None", 500
         #Lets try to find a author with the ID and return it
         return authors.findFromKeys(conn, authorIDs)
