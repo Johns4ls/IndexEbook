@@ -61,4 +61,18 @@ def updateAuthor():
 
 @app.route('/api/author/delete', methods=['GET'])
 def deleteAuthor():
-    #TODO
+    #Get database connection
+    conn = database.create_connection()
+    authorID = None
+    # Check if a authorID was provided as part of the URL.
+    if 'authorID' in request.args:
+        # If a authorID is provided, assign it to a variable.
+        try:
+            authorID = int(request.args['authorID'])
+        except:
+            # If we cannot parse the ID, display an error in the browser.
+            return "Error: Could not parse the authorID.", 500
+        Author.deleteFromKey(conn, authorID)
+    else:
+        # If no authorID is provided, display an error in the browser.
+        return "Error: No authorID field provided. Please specify a authorID.", 500

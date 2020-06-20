@@ -51,7 +51,23 @@ def getBook():
         return "Error: No bookID field provided. Please specify a bookID.", 500
 
 @app.route('/api/book/update', methods=['GET'])
-def getBook():
+def updateBook():
+    #TODO
 
 @app.route('/api/book/delete', methods=['GET'])
-def getBook():
+def deleteBook():
+    #Get database connection
+    conn = database.create_connection()
+    bookID = None
+    # Check if a bookID was provided as part of the URL.
+    if 'bookID' in request.args:
+        # If a bookID is provided, assign it to a variable.
+        try:
+            bookID = int(request.args['bookID'])
+        except:
+            # If we cannot parse the ID, display an error in the browser.
+            return "Error: Could not parse the bookID.", 500
+        Author.deleteFromKey(conn, bookID)
+    else:
+        # If no bookID is provided, display an error in the browser.
+        return "Error: No bookID field provided. Please specify a bookID.", 500
