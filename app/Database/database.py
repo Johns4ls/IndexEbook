@@ -1,5 +1,6 @@
 #This imports the functions we need to interact with our database
 import sqlite3
+from sqlite3 import *
 from sqlite3 import Error
 
 """ This is a suite of utility tools to interact with our operating system including making files, and editing them. 
@@ -23,7 +24,6 @@ def create_connection():
         
         #This is our way to connect up the database to our project
         conn = sqlite3.connect(db_file)
-
         #Here we are updating our tables to make sure they are accurate.
         tables.update_tables(conn)
 

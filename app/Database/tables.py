@@ -20,3 +20,4 @@ def update_tables(conn):
     #Lets grab our cursor and execute these SQL statements against the database.
     conn.execute(sql_authors_table)
     conn.execute(sql_books_table)
+        

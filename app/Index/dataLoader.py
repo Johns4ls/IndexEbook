@@ -1,10 +1,6 @@
-
-#This gets our classes/objects we've created
-from Objects.books import Book
-from Objects.authors import Author
-
-#This is our way to get the ID of our Author we insert
-from Database import getLastID
+from app.Objects.authors import Author
+from app.Objects.books import Book
+from app.Database import getLastID
 
 #Here we are going to load some data into our database
 def LoadFakeData(conn):
