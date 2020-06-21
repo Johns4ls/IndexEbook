@@ -43,24 +43,17 @@ def indexBooks(queue_lists):
         print("Index Failed!")
 
 def processBooks(queue_list):
-    #TODO
-    dataLoader.LoadFakeData(conn)
-    """
     conn = database.create_connection()
-    #This loads fake data into the database.
-    
-    #Get data from epub, check metadata against google books database, and then submit it to our database
-    dataLoader.LoadData(conn, GoogleISBNData.query(EbookQuery.readEpub())[0])
-
-    #Get data from mobi, check metadata against google books database, and then submit it to our database
-    dataLoader.LoadData(conn, GoogleISBNData.query(MobiQuery.readMobi())[0])
-
-    #Get data from PDF, check metadata against google books database, and then submit it to our database
-    dataLoader.LoadData(conn, GoogleISBNData.query(PDFQuery.readPDF())[0])
-    """
+    for eBook in queue_list:
+        if(eBook.endswith('.epub')):
+            dataLoader.LoadData(conn, GoogleISBNData.query(EbookQuery.readEpub())[0])
+        elif(eBook.endswith('.mobi')):
+            dataLoader.LoadData(conn, GoogleISBNData.query(MobiQuery.readMobi())[0])
+        elif(eBook.endswith('.pdf')):
+            dataLoader.LoadData(conn, GoogleISBNData.query(PDFQuery.readPDF())[0])   
 
 def index():
-    print("Starting index at " + datetime.datetime.now().strftime('%H:%M:%S') + "\n")
+    print("Starting index at " + datetime.datetime.now().strftime('%H:%M:%S'))
 
     #Instantiate the files we can currently pull metadata from
     file_types = '.epub', '.mobi', '.pdf'
@@ -81,3 +74,4 @@ def index():
     queue_lists = divideList(queue_list)
 
     indexBooks(queue_lists)
+    print("Completed index")
