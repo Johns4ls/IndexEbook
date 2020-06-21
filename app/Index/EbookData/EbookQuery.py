@@ -6,13 +6,13 @@ from ebooklib import epub
 import os
 
 #Function to read our epub file 
-def readEpub():
+def readEpub(eBook):
 
     #Set up our string of information to return
     returnData = ''
 
     #Load up our book to check for metadata
-    book = epub.read_epub(os.path.dirname(os.path.abspath(__file__)) + '\Chronicles_Vol_1.epub')
+    book = epub.read_epub(eBook)
     
     #Check title of the ebook and add it to our return data 
     for item in (book.get_metadata('DC', 'title')):

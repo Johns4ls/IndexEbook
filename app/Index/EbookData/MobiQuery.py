@@ -6,12 +6,11 @@ from mobi import Mobi
 import os
 
 #Here is our function to parse out the data from the mobi file
-def readMobi():
+def readMobi(eBook):
 
     #Open up our book and parse it 
-    book = Mobi(os.path.dirname(os.path.abspath(__file__)) + '/book.mobi')
+    book = Mobi(eBook)
     book.parse()
-
     #Return the information we want
     return(book.title().decode("utf-8") + " " + book.author().decode("utf-8"))
 
