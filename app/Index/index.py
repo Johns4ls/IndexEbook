@@ -5,6 +5,7 @@ from app.Index.EbookData import EbookQuery, MobiQuery, PDFQuery
 from app.Database import database, tables
 from app.Index.Log import Tee
 from multiprocessing import Pool
+from multiprocessing import cpu_count
 
 # List files in the queue in the log
 def list_targets(media_path, file_types):
@@ -32,12 +33,12 @@ def list_targets(media_path, file_types):
         return queue_Count, queue_list
 
 def divideList(seq):
-    return (seq[i::6] for i in range(6))
+    return (seq[i::cpu_count()] for i in range(cpu_count()))
 
 def indexBooks(queue_lists):
         try:
         print("Spinning up processes")
-        with Pool(6) as p:
+        with Pool(cpu_count()) as p:
         p.map(processBooks, queue_lists)
     except:
         print("Index Failed!")
