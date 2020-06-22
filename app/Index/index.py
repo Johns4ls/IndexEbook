@@ -47,11 +47,11 @@ def processBooks(queue_list):
     conn = database.create_connection()
     for eBook in queue_list:
         if(eBook.endswith('.epub')):
-            dataLoader.LoadData(conn, GoogleISBNData.query(EbookQuery.readEpub())[0])
+            dataLoader.LoadData(conn, GoogleISBNData.query(EbookQuery.readEpub(eBook))[0])
         elif(eBook.endswith('.mobi')):
-            dataLoader.LoadData(conn, GoogleISBNData.query(MobiQuery.readMobi())[0])
+            dataLoader.LoadData(conn, GoogleISBNData.query(MobiQuery.readMobi(eBook))[0])
         elif(eBook.endswith('.pdf')):
-            dataLoader.LoadData(conn, GoogleISBNData.query(PDFQuery.readPDF())[0])   
+            dataLoader.LoadData(conn, GoogleISBNData.query(PDFQuery.readPDF(eBook))[0])   
 
 def index():
     print("Starting index at " + datetime.datetime.now().strftime('%H:%M:%S'))
