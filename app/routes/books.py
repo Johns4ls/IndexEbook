@@ -1,7 +1,7 @@
 from app import app
 from app.Objects.books import Book
 from app.Database import database
-from flask import request, jsonify
+from flask import request, jsonify, send_from_directory
 @app.route('/api/books/get/all', methods=['GET'])
 def getAllBooks():
     #Get database connection
@@ -71,3 +71,21 @@ def deleteBook():
     else:
         # If no bookID is provided, display an error in the browser.
         return "Error: No bookID field provided. Please specify a bookID.", 500
+
+@app.route("/api/book/download")
+def get_file(path):
+    if 'path' and 'fileName' in request.args:
+        path = None
+        fileName = None
+        try:
+            path = request.args['path']
+        except:
+            # If we cannot parse the ID, display an error in the browser.
+            return "Error: Could not parse the path.", 500
+        try:
+            fileName = request.args['fileName']
+        except:
+            # If we cannot parse the ID, display an error in the browser.
+            return "Error: Could not parse the fileName.", 500
+        if(path is not None and fileName is not None):
+            return send_from_directory(path, fileName, as_attachment=True)
