@@ -17,7 +17,7 @@ class Author:
         #Check for data issues here
         if(self.name == None):
             return "An author must have a name", 500
-        #Here we are jumping into the datalayer to add our object to the database.
+            #Here we are jumping into the datalayer to add our object to the database.
         authors.insert(self, conn)
 
     def update(self, conn):
@@ -54,9 +54,16 @@ class Author:
         #Lets return all authors to the user
         return authors.findAll(conn)
 
-    def search(conn, info):
+    def search(self, conn):
         #Check for data issues here
-        if(info is None):
+        if(self.name is None):
             return "We cannot search for nothing", 500
         #Lets return all the authors we find
-        return authors.search(conn, info)
+        return authors.search(self, conn)
+
+    def exists(self, conn):
+        #Check for data issues here
+        if(self.name is None):
+            return "You are missing data", 500
+        else:
+            return authors.exists(self, conn)
