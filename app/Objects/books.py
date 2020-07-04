@@ -23,8 +23,11 @@ class Book:
             return "A book must have a title", 500
         if(self.authorID == None):
             return "A book must have an author", 500
-        #Here we finally insert the data for our book.
-        books.insert(self, conn)
+        if(books.exists(self, conn)):
+            print("Already exists")
+        else:
+            #Here we finally insert the data for our book.
+            books.insert(self, conn)
 
     def update(self, conn):
         #Check for data issues here
@@ -73,3 +76,10 @@ class Book:
             return "We cannot search for nothing", 500
         #Lets return all the books we find
         return books.searchTitle(conn, info)
+
+    def exists(self, conn):
+        #Check for data issues here
+        if(self.title is None or self.authorID is None):
+            return "You are missing data", 500
+        else:
+            return books.exists(self, conn)

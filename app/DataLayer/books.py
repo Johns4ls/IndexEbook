@@ -6,16 +6,21 @@ def insert(self, conn):
     query = "insert into books (title, releaseDate, pages, authorID)"
 
     #I used string interpolation to add the data into the query
-    query += "values ('%s', %s, %s, %s);" % (self.title, self.releaseDate, self.pages, self.authorID)
+    query += """values ("%s", %s, %s, %s);""" % (self.title, self.releaseDate, self.pages, self.authorID)
 
     #Lets insert the data into the database.
-    conn.execute(query)
+    try:
+        conn.execute(query)
+    except Exception as e:
+        print(query)
+        print(e)
 
     #This has to be run to save the data.
     conn.commit()
 
 def update(self, conn):
     #TODO
+    print("Unimplemented")
 
 def deleteFromKey(conn, bookID):
 
@@ -47,6 +52,17 @@ def searchTitle(conn, info):
 
     #Here we are setting up a string representation of the SQL.
     cur = conn.cursor()
-    cur.execute(f"Select * from books WHERE title LIKE '%{info}%';")
+    cur.execute(f"""Select * from books WHERE title LIKE "%{info}%";""")
     return cur.fetchall()
+
+def exists(self, conn):
+
+    #Here we are setting up a string representation of the SQL.
+    isSame = False
+    cur = conn.cursor()
+    cur.execute(f"""Select * from books WHERE title LIKE "%{self.title}%" AND authorID = {self.authorID};""")
+    rows = cur.fetchall()
+    if (len(rows) > 0):
+        isSame = True
+    return isSame
 
