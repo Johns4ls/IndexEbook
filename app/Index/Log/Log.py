@@ -6,4 +6,3 @@ class Tee(object):
 	def write(self, obj):
 		for ftarg in self.targets:
 			ftarg.write(obj)
-			ftarg.flush()  # If you want the output to be visible immediately
