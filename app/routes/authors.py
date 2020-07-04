@@ -58,6 +58,7 @@ def getAuthor():
 @app.route('/api/author/update', methods=['GET'])
 def updateAuthor():
     #TODO
+    print("Unimplemented")
 
 @app.route('/api/author/delete', methods=['GET'])
 def deleteAuthor():

@@ -53,6 +53,7 @@ def getBook():
 @app.route('/api/book/update', methods=['GET'])
 def updateBook():
     #TODO
+    Print("Unimplemented")
 
 @app.route('/api/book/delete', methods=['GET'])
 def deleteBook():
