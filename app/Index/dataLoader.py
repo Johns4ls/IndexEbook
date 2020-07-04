@@ -1,6 +1,7 @@
 from app.Objects.authors import Author
 from app.Objects.books import Book
 from app.Database import getLastID
+import traceback
 
 #Here we are going to load some data into our database
 def LoadFakeData(conn):
@@ -36,7 +37,12 @@ def LoadData (conn, Ebook):
         author1.name = Ebook["Authors"]
     
     #Lets insert our author into the database
-    author1.insert(conn)
+    if(not(author1.exists(conn))):
+        author1.insert(conn)
+    else:
+        author = author1.search(conn)
+        author1.id = author[0]
+
 
     #Lets create a new book as book1
     book1 = Book()
@@ -46,6 +52,8 @@ def LoadData (conn, Ebook):
 
     #Here we are getting the last inserted ID of the author, so that we can link them up with a Foreign Key
     book1.authorID = getLastID.getAuthorID(conn)
-
     #Lets insert our book
-    book1.insert(conn)
+    if(not(book1.exists(conn))):
+        book1.insert(conn)
+        print(book1.title)
+        
